@@ -7,6 +7,9 @@
 \usepackage[ngerman]{babel}
 \usepackage{enumerate}
 
+\usepackage{color}
+\usepackage{float}
+
 \usepackage{amsmath}
 \usepackage{graphicx}
 
@@ -18,6 +21,11 @@
 \title{Termpaper - KeyEscrow}
 \author{Daniel Foehn, Silvio Stappung, Jonas Hansen}
 \date{\today} %Es kann ein bestimmtes Datum eingetragen werden
+
+%macro definitions
+\definecolor{shadecolor}{RGB}{200,200,200}
+\newcommand{\shadebox}[1]{\par\noindent\colorbox{shadecolor}
+{\parbox{\dimexpr\textwidth-2\fboxsep\relax}{#1}}}
 
 \begin{document}
 \maketitle
@@ -48,13 +56,22 @@
 \section{Praktisches Beispiel}
 	\subsection{Abhören von verschlüsselter Kommuniktion bei bekannten Schlüsseln}
 	% TODO@16.11.
+	\begin{figure}[H]
+		\centering
+		%\includegraphics[width=.8\textwidth]{""}
+		\caption{Darstellung Versuchsaufbau}
+		\label{fig:versuchsaufbau}
+	\end{figure}
+	\shadebox{conf t}
+	\shadebox{monitor session 1 source interface Fa0/1}
+	\shadebox{monitor session 1 destination interface Fa0/21 encapsulation repliate}
 	\subsection{Analyse von bereits vorhandenen Tools} % keine Enterprise-lösungen
 \clearpage
 \section{Zukunftsaussichten}
 \clearpage
 \section{Fazit}
 \clearpage
-\section*{Quellen}
+\section*{Quellen}h
 \url{https://en.wikipedia.org/wiki/Key_escrow}\\
 \url{http://www.inside-it.ch/articles/38866}\\
 \url{https://www.cdt.org/files/pdfs/paper-key-escrow.pdf}\\
@@ -68,4 +85,5 @@
 \url{http://www.computerweekly.com/news/2240042808/US-abandons-key-escrow-encryption-plan} \\ %Meldung und Resaktionen zum Rückzug des Vorschlages des Senators
 \url{https://netzpolitik.org/2015/vordertuer-statt-hintertuer-nsa-chef-fordert-key-escrow-mit-verteilten-schluesseln/} \\ %NSA Chef fordert die Einführung von Key Escrow
 \url{http://www.linux-magazin.de/NEWS/CCC-fuer-Verbot-unverschluesselter-Kommunikation} \\ %CCC fordert Verbot von unverschlüsselter Kommunikation anstelle im Gegensatz zu Politiker, welche eine Aufhebung von verschlüsselungen und/oder eine Escrow-Pflicht verlangen
+\url{https://wiki.wireshark.org/ssl}
 \end{document}
