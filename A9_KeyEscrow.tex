@@ -7,6 +7,7 @@
 \usepackage[ngerman]{babel}
 \usepackage{enumerate}
 
+\usepackage{apacite}
 \usepackage{color}
 \usepackage{float}
 
@@ -26,8 +27,11 @@
 
 %macro definitions
 \definecolor{shadecolor}{RGB}{200,200,200}
+%small colored box with no visible border, breaks before and after box
 \newcommand{\shadebox}[1]{\par\noindent\colorbox{shadecolor}
 {\parbox{\dimexpr\textwidth-2\fboxsep\relax}{#1}}}
+%small noncolored box with visible border, breaks before and after box
+\newcommand{\commandbox}[1]{\par\noindent\fbox{\begin{minipage}{\textwidth}#1\end{minipage}}\par\noindent}
 
 \begin{document}
 \maketitle
@@ -54,25 +58,29 @@
 
 \clearpage
 \section{Zukunftsaussichten}
+aksjdfkajskdfjkasjfda  as \cite{wikipedia}
+\nocite{*}
 
 \clearpage
 \section{Fazit}
 
 \clearpage
 \section*{Quellen}
-\url{https://en.wikipedia.org/wiki/Key_escrow}\\
-\url{http://www.inside-it.ch/articles/38866}\\
-\url{https://www.cdt.org/files/pdfs/paper-key-escrow.pdf}\\
-\url{http://security.stackexchange.com/questions/36106/what-is-the-difference-between-key-escrow-and-a-recovery-agent}\\
-\url{https://en.wikipedia.org/wiki/Key_management}\\
-\url{https://epic.org/crypto/key_escrow/TIS_cke.html}\\
-\url{http://www.crypto.com/papers/escrow-acsac11.pdf}\\
-\url{https://www.admin.ch/opc/de/federal-gazette/2006/5693.pdf} \\ %Bericht des Bunbdesrates zu einem Postulat der Sicherheitskommision Sicherheitskommision mit Kapitel zu Key Escrow (Kapitel 7) 
+\bibliography{bibliography.bib}
+\bibliographystyle{apacite}
+\url{https://en.wikipedia.org/wiki/Key_escrow}\\ %done
+\url{http://www.inside-it.ch/articles/38866}\\%done
+\url{https://www.cdt.org/files/pdfs/paper-key-escrow.pdf}\\%done
+\url{http://security.stackexchange.com/questions/36106/what-is-the-difference-between-key-escrow-and-a-recovery-agent}\\%done
+\url{https://en.wikipedia.org/wiki/Key_management}\\%done
+\url{https://epic.org/crypto/key_escrow/TIS_cke.html}\\%done
+\url{http://www.crypto.com/papers/escrow-acsac11.pdf}\\%done
+\url{https://www.admin.ch/opc/de/federal-gazette/2006/5693.pdf} \\%done %Bericht des Bunbdesrates zu einem Postulat der Sicherheitskommision Sicherheitskommision mit Kapitel zu Key Escrow (Kapitel 7) 
 \url{https://www.schneier.com/paper-key-escrow.html} \\ %Arbeit zum überblick und Vergleich von Key Recovery, Escrow & Drittverschlöüsselung, sowie zur Geschichte der "Entschlüsselung" 
-\url{http://faculty.nps.edu/dedennin/publications/key-concerns.pdf} \\ %Vorstoss eines US Senators für Key Escrow nach dem 11. September 2001
-\url{http://www.computerweekly.com/news/2240042808/US-abandons-key-escrow-encryption-plan} \\ %Meldung und Resaktionen zum Rückzug des Vorschlages des Senators
-\url{https://netzpolitik.org/2015/vordertuer-statt-hintertuer-nsa-chef-fordert-key-escrow-mit-verteilten-schluesseln/} \\ %NSA Chef fordert die Einführung von Key Escrow
-\url{http://www.linux-magazin.de/NEWS/CCC-fuer-Verbot-unverschluesselter-Kommunikation} \\ %CCC fordert Verbot von unverschlüsselter Kommunikation anstelle im Gegensatz zu Politiker, welche eine Aufhebung von verschlüsselungen und/oder eine Escrow-Pflicht verlangen
-\url{https://wiki.wireshark.org/ssl}
+\url{http://faculty.nps.edu/dedennin/publications/key-concerns.pdf} \\ %done %Vorstoss eines US Senators für Key Escrow nach dem 11. September 2001
+\url{http://www.computerweekly.com/news/2240042808/US-abandons-key-escrow-encryption-plan} \\%done %Meldung und Resaktionen zum Rückzug des Vorschlages des Senators
+\url{https://netzpolitik.org/2015/vordertuer-statt-hintertuer-nsa-chef-fordert-key-escrow-mit-verteilten-schluesseln/} \\%done %NSA Chef fordert die Einführung von Key Escrow
+\url{http://www.linux-magazin.de/NEWS/CCC-fuer-Verbot-unverschluesselter-Kommunikation} \\ %done %CCC fordert Verbot von unverschlüsselter Kommunikation anstelle im Gegensatz zu Politiker, welche eine Aufhebung von verschlüsselungen und/oder eine Escrow-Pflicht verlangen
+\url{https://wiki.wireshark.org/ssl}%done
 
 \end{document}
