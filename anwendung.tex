@@ -22,11 +22,13 @@ Eine Einführung eines solchen Verbotes würde einen Staat Interational stark in
 	\subsection{Firmenintern}
 		% Jonas
 	\subsection{Recovery Agents und Trusted Third Parties}
-Bei Key Escrow handelt es sich um ein Verfahren, um Schlüssel für den späteren Gebrauch zu hinterlegen. Key Recovery ist der Prozess, der Schlüssel anhand bestehender Daten wieder ausliest.
+Bei Key Escrow handelt es sich um ein Verfahren um Schlüssel für den späteren Gebrauch zu hinterlegen. Key Recovery ist der Prozess der Schlüssel anhand bestehender Daten rekonstruiert.
 \\
-Die ausführende und berechtigte Instanz für Key Escrow und Key Recovery ist der Recovery Agent, welcher einer Trusted Third Party angehört.
+Falls Key Recovery, beziehungsweise Key Escrow von zwei Parteien erwünscht ist, wird meist eine Trusted Third Party als unabhängige Kontroll- und Aufsichtsinstanz hinzugezogen.
+\\
+Die ausführende und berechtigte Instanz für Key Escrow und Key Recovery ist als Teil einer Trusted Thir Party der Recovery Agent.
 		\subsubsection{Recovery Agent als Man in the Middle bei symmetrisch verschlüsselter Kommunikation}
-Die beiden nachfolgenden Abbildungen illustrieren eine einfache funktionsweise eines Recovery Agents gemäss \cite{ISSS}.
+Die beiden nachfolgenden Abbildungen illustrieren eine einfache funktionsweise eines Recovery Agent gemäss \cite{ISSS}.
 \\
 In Abbildung \ref{fig:recovery-agent-aufbau} werden zwei kommunizierende Computer dargestellt. \textit{A} nimmt die Rolle des Senders und \textit{B} die Rolle des Empfängers ein. Sie nutzen zur Verschlüsselung der Nachricht ein symmetrisches Chiffrierverfahren. Der genutzte Schlüssel $K_{AB}$ wurde bereits ausgetauscht. \textit{A} erstellt die Nachricht $M$ und chiffriert sie mittels $E(K_{AB},M)=M_{C}$. Die chriffrierte Nachricht $M_{C}$ wird über den Datenkanal übertragen und von \textit{B} empfangen. Nach Dechiffrierung mittels $D(K_{AB},M_{C})=M$ kann die Nachricht $M$ von \textit{B} weiterverarbeitet werden.
 \begin{figure}[H]
