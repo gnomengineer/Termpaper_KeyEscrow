@@ -36,23 +36,45 @@ Mit diesen Systemen lassen sich folgende Problembereiche addressieren:
 \end{itemize}
 	
 
-	\subsection{Exemplarisches Beispiel: Clipper Chip}
+	\subsection{Escrowed Encription Standard (EES)}
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=.8\textwidth]{clipper-chip.jpg}
-	\caption{MYK78T Clipper Chip (1993)}
+	\caption{MYK-78 Clipper Chip (1993)}
 	\label{fig:clipper-chip}
 \end{figure}
-Ein exemplarisches Beispiel für staatliches erzwungenes Key Escrow ist der sogenannte Clipper Chip aus dem Jahre 1993. Dieser wurde von der NSA in Zusammenarbeit den US-Behörden entwickelt. \\
-Der Clipper Chip bietet hardwaremässige Verschlüsselung mit einer staatlich eingebauten Hintertür. Die Behörden konnten die Verschlüsselungsmechanismen für jeden Clipper Chip rückgängig machen und so an die ursprünglichen Daten kommen. \\
-Eingesetzt werden sollte der Chip bei verschlüsselter Telefonie.\\
-Designed wurde der Chip von Mykrotronx, hergestellt von VLSI Technology Inc. \\
+Ein exemplarisches Beispiel für staatliches erzwungenes Key Escrow ist der sogenannte Clipper Chip, welcher im Jahre 1993 durch die US-Behörden vorgestellt wurde und von der NSA entwickelt wurde.\\
+Der Clipper Chip gehört zum Escrowed Encryption Standard (EES), welche hardwaremässige Verschlüsselung mit einer staatlich eingebauten Hintertür bietet. Die Behörden konnten die Verschlüsselungsmechanismen für jeden Clipper Chip rückgängig machen und so an die ursprünglichen Daten kommen. \\
+Eingesetzt werden sollte der Chip staatlicher und privater Kommunikation. Der Haupteinsatzzweck lag bei verschlüsselter Telefonie. \cite{ees}\\
+Entworfen wurde der Chip von Mykrotronx, hergestellt von VLSI Technology Inc. \\
 
-	\subsubsection{Verschlüsselung mit Backdoor}
-Der Clipper Chip verwendet zur Verschlüsselung den Skipjack-Verschlüsselungsalgorithmus welcher dem DES-Algorithmus ähnelt. Entwickelt wurde Skipjack von der NSA und wurde bis zur Veröffentlichung im Jahre 1998 unter Verschluss gehalten. \cite{skipjack_wikipedia}
+	\subsubsection{Funktionsweise und Aufbau}
+Der Clipper Chip verwendet zur Verschlüsselung den Skipjack-Verschlüsselungsalgorithmus welcher dem DES-Algorithmus ähnelt. Entwickelt wurde Skipjack von der NSA und wurde bis zur Veröffentlichung im Jahre 1998 unter Verschluss gehalten. Nur wenige zivile Experten erhielten Einsicht in den Sourcecode. \cite{ees}\\
+Zentrales Element der nach EES verschlüsselten Kommunikation ist das \textit{Law Enforcement Access Field (LEAF)} welches bei der Kommunikation zwischen zwei Geräten mitgeschickt wird.\\
+Der Aufbau des 128bit grossen LEAF sieht wie folg aus:
+\begin{itemize}
+	\item \textbf{Unit ID} (32 bit): Eindeutige ID pro Chip (bei Herstellung vergeben)
+	\item \textbf{Encrypted Session Key} (80 bit): Session Key, verschlüsselt durch gerätespezifischen Unit Key
+	\item \textbf{Checksum} (16 bit): Zur Fehlerüberprüfung
+\end{itemize}
+Wünschen zwei EES-fähige Geräte eine verschlüsselte Kommunikation, handeln diese als erstes einen eindeutigen, temporären \textit{Session Key} aus. Dieser wird mittels eindeutigem, gerätespezifischen Unit Key verschlüsselt. Das somit generierte LEAF wird zusätzlich mit einem \textit{Family Key} verschlüsselt, welcher pro EES-Gerätefamilie eindeutig ist.\\
+Nachfolgend werden die verwendeten Keys zusammengefasst:
+\begin{itemize}
+	\item \textbf{Unit Key}: Eindeutig pro Clipper Chip.
+	\item \textbf{Session Key}: Temporärer Key für eine Session. Wird bei Kommunikationsbeginn von den beiden Geräten ausgehandelt. 
+	\item \textbf{Family Key}: Eindeutig pro EES-Gerätefamilie
+\end{itemize}
+Nachfolgend eine Illustration des LE
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=.8\textwidth]
+		{leaf-aufbau.png}
+	\caption{Aufbau LEAF gemäss}
+	{\cite{ees}}
+	\label{fig:leaf-aufbau }
+\end{figure}
+Der \textit{Unit Key} wird dabei aufgespalten und bei zwei voneinander getrennten nationalen Behörden gespeichert. Dies dient dazu, Amtsmissbrauch einzudämmen. Soll aufgrund einer richterlichen Anordnung eine verschlüsselte Kommunikation abgehört werden, wird das LEAF mittels \textit{Family Key} dechiffriert. Daraus kann die Unit ID gewonnen werden. Mit der ID wird bei den beiden Behörden die beiden Teile des \textit{Unit Key} angefordert und zusammengefügt. Daraus kann danach der \textit{Session Key} und aus diesem wiederum die verschlüsselten Daten entschlüsselt werden.
 
-
-Um Missbrauch der Behörden einzudämmen, wurde d
 
 
 	\subsection{Recovery Agents und Trusted Third Parties}
