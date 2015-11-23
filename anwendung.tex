@@ -16,7 +16,7 @@ Eine nicht so schwerwiegende Alternative zu Key Escrow wäre die Hinterlegung de
 	
 	\subsubsection{Verbot von alternativen Verschlüsselung}
 Mit der Einführung eines Escrow Systemes oder der Einführung einer Hinterlegungspflicht für Algorithmen würde auch dazu führen, dass die Gegenseite, das heisst die Verwendung nicht hinterlegter Schlüssel / Algorithmen, verboten werden müsste. Auf der einen Seite wäre ein solches Verbot sehr schwer durchzusetzten, geschweige überhaupt zu kontrollieren, auf der andern Seite wäre es von der Strafnorm her auch kaum möglich, eine genug hohe Maximalstrafe ansetzen zu können, um grössere kriminelle Organisationen von der illealgen Verwendung der Verschlüsselung abzuwenden. \cite{adminch} \\ %KP 7.3.
-Zudem wäre ein solches Verbot auch nur dann vernünftig brauchbar und durchsetzbar, wenn es von der internationalen Gemeinschaft getragen und somit in allen Ländern durchgesetzt würde \cite{denning}. Da der Internationale Weg in Sache Verschlüsselungspolitik in eine andere Richtung weht, zeigt sich darin, dass sich einige Länder, welche in den neunziger Jahren die Kryptografie noch eingeschränkt hatten, in Richtung einer offenen Kryptografiepolitik bewegen. \cite{epic} \cite{adminch} \\ % 7.2.3
+Zudem wäre ein solches Verbot auch nur dann vernünftig brauchbar und durchsetzbar, wenn es von der internationalen Gemeinschaft getragen und somit in allen Ländern durchgesetzt würde \cite{denning}. Da der Internationale Weg in Sache Verschlüsselungspolitik in eine andere Richtung weht, zeigt sich darin, dass sich einige Länder, welche in den neunziger Jahren die Kryptografie noch eingeschränkt hatten, in Richtung einer offenen Kryptografiepolitik bewegen. \cite{clipperchip} \cite{adminch} \\ % 7.2.3
 Eine Einführung eines solchen Verbotes würde einen Staat Interational stark ins Abseits setzten und das Verbot wäre somit auch kaum duchsetzbar.
 		
 	\subsection{Firmenintern}
@@ -36,15 +36,23 @@ Mit diesen Systemen lassen sich folgende Problembereiche addressieren:
 \end{itemize}
 	
 
-	
 	\subsection{Exemplarisches Beispiel: Clipper Chip}
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=.8\textwidth]{clipper-chip.jpg}
-	\caption{Clipper Chip (1993)}
+	\caption{MYK78T Clipper Chip (1993)}
 	\label{fig:clipper-chip}
 \end{figure}
-Ein exemplarisches Beispiel für staatliches Key Escrow ist der sogenannte Clipper Chip aus dem Jahre 1993. Dieser wurde von der NSA in Zusammenarbeit den US Behörden entwickelt.
+Ein exemplarisches Beispiel für staatliches erzwungenes Key Escrow ist der sogenannte Clipper Chip aus dem Jahre 1993. Dieser wurde von der NSA in Zusammenarbeit den US-Behörden entwickelt. \\
+Der Clipper Chip bietet hardwaremässige Verschlüsselung mit einer staatlich eingebauten Hintertür. Die Behörden konnten die Verschlüsselungsmechanismen für jeden Clipper Chip rückgängig machen und so an die ursprünglichen Daten kommen. \\
+Eingesetzt werden sollte der Chip bei verschlüsselter Telefonie.\\
+Designed wurde der Chip von Mykrotronx, hergestellt von VLSI Technology Inc. \\
+
+	\subsubsection{Verschlüsselung mit Backdoor}
+Der Clipper Chip verwendet zur Verschlüsselung den Skipjack-Verschlüsselungsalgorithmus welcher dem DES-Algorithmus ähnelt. Entwickelt wurde Skipjack von der NSA und wurde bis zur Veröffentlichung im Jahre 1998 unter Verschluss gehalten. \cite{skipjack_wikipedia}
+
+
+Um Missbrauch der Behörden einzudämmen, wurde d
 
 
 	\subsection{Recovery Agents und Trusted Third Parties}
