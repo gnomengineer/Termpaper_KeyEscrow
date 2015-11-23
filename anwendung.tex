@@ -20,15 +20,41 @@ Zudem wäre ein solches Verbot auch nur dann vernünftig brauchbar und durchsetz
 Eine Einführung eines solchen Verbotes würde einen Staat Interational stark ins Abseits setzten und das Verbot wäre somit auch kaum duchsetzbar.
 		
 	\subsection{Firmenintern}
-		% Jonas
+Das nachfolgende Kapitel gibt einen Überblick über die Problembereiche beim Key Management von Firmen und zeigt auf, inwiefern Hintertüren für staatliche Eingriffe in Software eingebaut werden können.
+
+	\subsubsection{Key Management Systeme (KMS)}
+Das zentrale Verwalten und hinterlegen von Schlüsseln ist für grössere Firmen eine Notwendigkeit. \\
+Geschäftskritische Daten sollten wenn immer verschlüsselt werden. Um den Überblick über die verwendeten Schlüssel zu bewahren, werden Key Management Systeme (KMS) eingesetzt.
+Mit diesen Systemen lassen sich folgende Problembereiche addressieren:
+\begin{itemize}
+	\item Datensicherheit durch Verschlüsselung gewährleisten
+	\item Zentrales Verwalten und Administrieren von Schlüsseln
+	\item Entschlüsseln von Geschäftsdaten von Mitarbeitenden bei Tod oder Abwesenheit
+	\item Entschlüsseln von Geschäftsdaten bei untreuen Mitarbeitern
+  \item Überwachung von Mitarbeitern
+  \item Verwalten und verteilen von Softwarelizenzen
+\end{itemize}
+	
+
+	
+	\subsection{Exemplarisches Beispiel: Clipper Chip}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=.8\textwidth]{clipper-chip.jpg}
+	\caption{Clipper Chip (1993)}
+	\label{fig:clipper-chip}
+\end{figure}
+Ein exemplarisches Beispiel für staatliches Key Escrow ist der sogenannte Clipper Chip aus dem Jahre 1993. Dieser wurde von der NSA in Zusammenarbeit den US Behörden entwickelt.
+
+
 	\subsection{Recovery Agents und Trusted Third Parties}
 Bei Key Escrow handelt es sich um ein Verfahren um Schlüssel für den späteren Gebrauch zu hinterlegen. Key Recovery ist der Prozess der Schlüssel anhand bestehender Daten rekonstruiert.
 \\
 Falls Key Recovery, beziehungsweise Key Escrow von zwei Parteien erwünscht ist, wird meist eine Trusted Third Party als unabhängige Kontroll- und Aufsichtsinstanz hinzugezogen.
 \\
-Die ausführende und berechtigte Instanz für Key Escrow und Key Recovery ist als Teil einer Trusted Thir Party der Recovery Agent.
+Die ausführende Instanz für Key Escrow und Key Recovery ist als Teil einer Trusted Thir Party der Recovery Agent.
 		\subsubsection{Recovery Agent als Man in the Middle bei symmetrisch verschlüsselter Kommunikation}
-Die beiden nachfolgenden Abbildungen illustrieren eine einfache funktionsweise eines Recovery Agent gemäss \cite{ISSS}.
+Die beiden nachfolgenden Abbildungen illustrieren eine einfache funktionsweise eines Recovery Agent gemäss \cite{isss}.
 \\
 In Abbildung \ref{fig:recovery-agent-aufbau} werden zwei kommunizierende Computer dargestellt. \textit{A} nimmt die Rolle des Senders und \textit{B} die Rolle des Empfängers ein. Sie nutzen zur Verschlüsselung der Nachricht ein symmetrisches Chiffrierverfahren. Der genutzte Schlüssel $K_{AB}$ wurde bereits ausgetauscht. \textit{A} erstellt die Nachricht $M$ und chiffriert sie mittels $E(K_{AB},M)=M_{C}$. Die chriffrierte Nachricht $M_{C}$ wird über den Datenkanal übertragen und von \textit{B} empfangen. Nach Dechiffrierung mittels $D(K_{AB},M_{C})=M$ kann die Nachricht $M$ von \textit{B} weiterverarbeitet werden.
 \begin{figure}[H]
