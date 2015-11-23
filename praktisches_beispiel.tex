@@ -23,11 +23,13 @@
 		Switch Port Analyzer (kurz SPAN), oft auch port mirroring oder port monitoring genannt, kopiert switch netzwerk verkehr und sendet diesen an den SPAN Port zur Analyse durch einen Netzwerk Analyzer weiter. Durch Einschalten des SPAN, kann der Verkehr auf einem Switch überwacht werden durch Weiterleiten von eingehendem und ausgehendem Nachrichten an einen anderen Port [...] Netzwerk Analyzer können so zum Fehlersuchen von Netzwerkproblemen im Datenverkehr benutzt werden, ohne dass dabei das Netzwerk ausser Dienst genommen werden muss.\cite{span}
 		}
 		
-	Der Versuch besteht aus 2 Teilversuchen. Im ersten Teilversuch wurde auf dem SPAN Port angeschlossenen Rechner das Programm Wireshark gestartet ohne dabei die SSL Zertifikate auszutauschen. Das Ergebnis, ein gesnifftes TCP Paket auf dem 443 Port ist im Bild 
+	Der Versuch besteht aus 2 Teilversuchen. Im ersten Teilversuch wurde auf dem SPAN Port angeschlossenen Rechner das Programm Wireshark gestartet ohne dabei die SSL Zertifikate auszutauschen. Das Ergebnis, ein gesnifftes TCP Paket auf dem 443 Port ist im Bild \ref{fig:ssl_encrypted_data} zu sehen.
 	\begin{figure}[H]
 		\centering
 		\includegraphics[width=.8\textwidth]{SSL_encrypted_data.png}
 		\caption{Ansicht eines TCP Pakets mit SSL Verschlüsselung}
 		\label{fig:ssl_encrypted_data}
 	\end{figure}
+	
+	Beim zweiten Teilversuch wurde dem Wireshark der Schlüssel mitgeteilt. Über Settings unter 
 	\subsection{Analyse von bereits vorhandenen Tools} % keine Enterprise-lösungen
