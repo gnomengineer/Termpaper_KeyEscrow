@@ -64,7 +64,6 @@ Nachfolgend werden die verwendeten Keys zusammengefasst:
 	\item \textbf{Session Key}: Temporärer Key für eine Session. Wird bei Kommunikationsbeginn von den beiden Geräten ausgehandelt. 
 	\item \textbf{Family Key}: Eindeutig pro EES-Gerätefamilie
 \end{itemize}
-Nachfolgend eine Illustration des LE
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=.8\textwidth]
@@ -74,7 +73,14 @@ Nachfolgend eine Illustration des LE
 	\label{fig:leaf-aufbau }
 \end{figure}
 Der \textit{Unit Key} wird dabei aufgespalten und bei zwei voneinander getrennten nationalen Behörden gespeichert. Dies dient dazu, Amtsmissbrauch einzudämmen. Soll aufgrund einer richterlichen Anordnung eine verschlüsselte Kommunikation abgehört werden, wird das LEAF mittels \textit{Family Key} dechiffriert. Daraus kann die Unit ID gewonnen werden. Mit der ID wird bei den beiden Behörden die beiden Teile des \textit{Unit Key} angefordert und zusammengefügt. Daraus kann danach der \textit{Session Key} und aus diesem wiederum die verschlüsselten Daten entschlüsselt werden.
-
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=.8\textwidth]
+		{EES-Hinterlegungsstelle.png}
+	\caption{Der Unit Key wird für den Schutz vor Amtsmissbrauch gesplitet an zwei Stellen hinterlegt. Beide Teile fügen sich zum gesamten Key zusammen.}
+	{\cite{ees}}
+	\label{fig:leaf-aufbau }
+\end{figure}
 
 
 	\subsection{Recovery Agents und Trusted Third Parties}
@@ -84,9 +90,7 @@ Falls Key Recovery, beziehungsweise Key Escrow von zwei Parteien erwünscht ist,
 \\
 Die ausführende Instanz für Key Escrow und Key Recovery ist als Teil einer Trusted Thir Party der Recovery Agent.
 		\subsubsection{Recovery Agent als Man in the Middle bei symmetrisch verschlüsselter Kommunikation}
-Die beiden nachfolgenden Abbildungen illustrieren eine einfache funktionsweise eines Recovery Agent gemäss \cite{isss}.
-\\
-In Abbildung \ref{fig:recovery-agent-aufbau} werden zwei kommunizierende Computer dargestellt. \textit{A} nimmt die Rolle des Senders und \textit{B} die Rolle des Empfängers ein. Sie nutzen zur Verschlüsselung der Nachricht ein symmetrisches Chiffrierverfahren. Der genutzte Schlüssel $K_{AB}$ wurde bereits ausgetauscht. \textit{A} erstellt die Nachricht $M$ und chiffriert sie mittels $E(K_{AB},M)=M_{C}$. Die chriffrierte Nachricht $M_{C}$ wird über den Datenkanal übertragen und von \textit{B} empfangen. Nach Dechiffrierung mittels $D(K_{AB},M_{C})=M$ kann die Nachricht $M$ von \textit{B} weiterverarbeitet werden.
+Die beiden nachfolgenden Abbildungen illustrieren eine einfache funktionsweise eines Recovery Agent gemäss Belser \cite{isss}.
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=.8\textwidth]
@@ -94,9 +98,7 @@ In Abbildung \ref{fig:recovery-agent-aufbau} werden zwei kommunizierende Compute
 	\caption{Symmetrische Verschlüsselung einer Kommunikation}
 	\label{fig:recovery-agent-aufbau}
 \end{figure}
-Abbildung \ref{fig:recovery-agent-mitm} erweitert die symmetrisch verschlüsselte Kommunikation von \textit{A} und \textit{B} mit einem Recovery Agenten \textit{RA}.
-\\
-Dieser besitzt ebenfalls einen Schlüssel $K_{RA}$. Beim Senden der Nachricht $M$ wird ebenfalls der chiffrierte Schlüssel $E(K_{RA},K_{AB})=C_{K_{AB}}$ von \textit{A} übertragen. Der Recovery Agent \textit{RA} hört die chiffrierte Nachricht $M_{C}$ und den chiffrierten Schlüssel $C_{K_{AB}}$ vom Datenkanal ab. Er dechiffriert den Schlüssel von \textit{A} und \textit{B} mittels $D(K_{RA}, C_{K_{AB}})=K_{AB}$ und kann somit auch die chiffrierte Nachricht $M_{C}$ dechiffrieren.
+In Abbildung \ref{fig:recovery-agent-aufbau} werden zwei kommunizierende Computer dargestellt. \textit{A} nimmt die Rolle des Senders und \textit{B} die Rolle des Empfängers ein. Sie nutzen zur Verschlüsselung der Nachricht ein symmetrisches Chiffrierverfahren. Der genutzte Schlüssel $K_{AB}$ wurde bereits ausgetauscht. \textit{A} erstellt die Nachricht $M$ und chiffriert sie mittels $E(K_{AB},M)=M_{C}$. Die chriffrierte Nachricht $M_{C}$ wird über den Datenkanal übertragen und von \textit{B} empfangen. Nach Dechiffrierung mittels $D(K_{AB},M_{C})=M$ kann die Nachricht $M$ von \textit{B} weiterverarbeitet werden.
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=.8\textwidth]
@@ -104,3 +106,6 @@ Dieser besitzt ebenfalls einen Schlüssel $K_{RA}$. Beim Senden der Nachricht $M
 	\caption{Recovery Agent als Man in the Middle}
 	\label{fig:recovery-agent-mitm}
 \end{figure}
+Abbildung \ref{fig:recovery-agent-mitm} erweitert die symmetrisch verschlüsselte Kommunikation von \textit{A} und \textit{B} mit einem Recovery Agenten \textit{RA}.
+\\
+Dieser besitzt ebenfalls einen Schlüssel $K_{RA}$. Beim Senden der Nachricht $M$ wird ebenfalls der chiffrierte Schlüssel $E(K_{RA},K_{AB})=C_{K_{AB}}$ von \textit{A} übertragen. Der Recovery Agent \textit{RA} hört die chiffrierte Nachricht $M_{C}$ und den chiffrierten Schlüssel $C_{K_{AB}}$ vom Datenkanal ab. Er dechiffriert den Schlüssel von \textit{A} und \textit{B} mittels $D(K_{RA}, C_{K_{AB}})=K_{AB}$ und kann somit auch die chiffrierte Nachricht $M_{C}$ dechiffrieren.
