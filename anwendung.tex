@@ -70,7 +70,7 @@ Nachfolgend werden die verwendeten Keys zusammengefasst:
 		{leaf-aufbau.png}
 	\caption{Aufbau LEAF gemäss}
 	{\cite{ees}}
-	\label{fig:leaf-aufbau }
+	\label{fig:leaf-aufbau}
 \end{figure}
 Der \textit{Unit Key} wird dabei aufgespalten und bei zwei voneinander getrennten nationalen Behörden gespeichert. Dies dient dazu, Amtsmissbrauch einzudämmen. Soll aufgrund einer richterlichen Anordnung eine verschlüsselte Kommunikation abgehört werden, wird das LEAF mittels \textit{Family Key} dechiffriert. Daraus kann die Unit ID gewonnen werden. Mit der ID wird bei den beiden Behörden die beiden Teile des \textit{Unit Key} angefordert und zusammengefügt. Daraus kann danach der \textit{Session Key} und aus diesem wiederum die verschlüsselten Daten entschlüsselt werden.
 \begin{figure}[H]
@@ -78,11 +78,17 @@ Der \textit{Unit Key} wird dabei aufgespalten und bei zwei voneinander getrennte
 	\includegraphics[width=.8\textwidth]
 		{EES-Hinterlegungsstelle.png}
 	\caption{Der Unit Key wird für den Schutz vor Amtsmissbrauch gesplittet an zwei Stellen hinterlegt. Beide Teile fügen sich zum gesamten Key zusammen.}
-	{\cite{ees}}
-	\label{fig:leaf-aufbau }
+	\label{fig:clipper-chip-in-escrow}
 \end{figure}
+
+	\subsubsection{Technische Schwachstelle}
+Im Jahr 1994 veröffentlichte Matt Blaze von AT\& T ein Paper, in dem er eine wesentliche Schwachstelle des Systemes aufzeigte. Wie in Abbildung \ref{fig:leaf-aufbau} zu sehen ist, wird dem LEAF eine Prüfsumme in Form eines Hash mitgegeben. Diese Prüfsumme wird benötigt, damit Manipulationen des LEAF ausgeschlossen werden können. Stimmt der Hash der Prüfsumme nicht mit der Summe des LEAF überein, werden die gesendeten Nachrichten vom Clipper Chip nicht dechiffriert. \\
+Forschungen von Matt Blaze zeigen, dass dabei die Länge des Keys (16bit) nicht genügend gross ist, um einer \textit{Brute Force Attacke} standzuhalten. \cite{ees}
+Einem Angreifer wird es also ermöglicht, denselben Hash-Wert für ein LEAF mit einem gefälschten Session Key zu erzeugen. Die Escrow-Behörde erhält somit ein vermeintlich gültiges LEAF, beim aufschlüsseln jedoch einen gefälschten Session Key, mit welchem sich die versendeten Nachrichten nicht dechiffrieren lassen.
+
+	\subsubsection{Das Ende des Clipper Chip}
 Die Idee Clipper Chips kam bei der Bevölkerung überhaupt nicht gut an. \textit{"You don't want to buy a set of car keys from a guy who specializes in stealing cars"}, kommentierte Marc Rotenberg vom Electronic Privacy Information Center die Pläne der Behörden. \cite{ees_nytimes}\\
-Bis im Jahre 1996 wurde der Clipper Chip irrelevant und wird seither nicht mehr weiter produziert. Parallel zum Clipper Chip wurden starke, frei verfügbare Datenverschlüsselungsmechanismen wie etwa PGP (Pretty Good Privacy) auf den Markt gebracht, welche die Idee eines staatlich kontrollierten Escrow-Systems verdrängten. Die Bevölkerung und Hersteller traute den Behörden zu wenig.
+Spätestens im Jahr 1996 wurde der Clipper Chip irrelevant und wird seither nicht mehr weiter produziert. Parallel zum Clipper Chip wurden starke, frei verfügbare Datenverschlüsselungsmechanismen wie etwa PGP (Pretty Good Privacy) auf den Markt gebracht, welche die Idee eines staatlich kontrollierten Escrow-Systems verdrängten. Die Bevölkerung und Hersteller trauten den Behörden zu wenig.
 
 	\subsection{Recovery Agents und Trusted Third Parties}
 Bei Key Escrow handelt es sich um ein Verfahren um Schlüssel für den späteren Gebrauch zu hinterlegen. Key Recovery ist der Prozess der Schlüssel anhand bestehender Daten rekonstruiert.
