@@ -33,6 +33,7 @@
 %small noncolored box with visible border, breaks before and after box
 \newcommand{\commandbox}[1]{\par\noindent\fbox{\begin{minipage}{\textwidth}#1\end{minipage}}\par\noindent}
 
+
 %page styling footer and header
 \usepackage{fancyhdr}
 \pagestyle{fancy}
@@ -47,10 +48,7 @@
 \begin{titlepage}
 	\maketitle
 	\thispagestyle{empty}
-	\begin{figure}
-		\centering
-		%\includegraphics[width=\textwidth]{•}
-	\end{figure}
+	\includegraphics[width=\textwidth]{keyescrow_title.png}
 \end{titlepage}
 
 \tableofcontents
@@ -58,13 +56,17 @@
 \clearpage
 
 %environment for abstracts
-\begin{abstract}
-	\ldots
-\end{abstract}
+\section*{Abstract}
 
 \clearpage
 \section{Einleitung}
- \input{einleitung.tex}
+Die Verschlüsselung von Daten hat in den vergangenen Jahren drastisch an Bedeutung gewonnen. 
+
+ % Aufkommen der Verschlüssenung --> von symetrisch zu asymetrisch 
+ % Geheimdienste vor Herausforderung (Interessenskonflikt <-> Sicherheit, Datenschutz)
+ % Sensibillisierung der Enduser (kein Neuland)
+ % Problematiken
+ % KEY ESCROW!!!!!!!!!!
 
 \clearpage
 \section{Aktuelle Situation}
@@ -77,6 +79,9 @@
 \clearpage
 \section{Praktisches Beispiel}
 	 \input{praktisches_beispiel.tex}
+
+\clearpage
+\section{Zukunftsaussichten}
 
 \clearpage
 \section{Fazit}
