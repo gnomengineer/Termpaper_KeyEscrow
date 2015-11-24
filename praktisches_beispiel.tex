@@ -1,5 +1,6 @@
 	\subsection{Abhören von verschlüsselter Kommuniktion bei bekannten Schlüsseln}
 	% TODO@16.11.
+	\subsubsection{1. Versuch - Im Networking Labor}
 	Als praktisches Beispiel wird eine Testumgebung mit folgender Hardware aufgebaut
 	\begin{itemize}
 		\item 1x Switch
@@ -10,11 +11,11 @@
 	die Kommunikation zwischen den zwei anderen Teilnehmern (PC und Webserver) zu entschlüsseln.
 	\begin{figure}[H]
 		\centering
-		%\includegraphics[width=.8\textwidth]{""}
+		\includegraphics[width=.8\textwidth]{UebungsAufbau.png}
 		\caption{Darstellung Versuchsaufbau}
 		\label{fig:versuchsaufbau}
 	\end{figure}
-	Der Switch wird mit unten aufgeführten Befehlen so eingerichtet, dass auf dem Interface Fa0/21 ein Switchport Analyzer (siehe Exkurs \ref{sec:exkurs_span}) eingesetzt wird.
+	Der Switch wird mit unten aufgeführten Befehlen so eingerichtet, dass auf dem Interface Fa0/21 ein Switchport Analyzer eingesetzt wird (siehe Exkurs \ref{sec:exkurs_span}).
 	\commandbox{conf t}
 	\commandbox{monitor session 1 source interface Fa0/1}
 	\commandbox{monitor session 1 destination interface Fa0/21 encapsulation repliate}
@@ -34,11 +35,29 @@
 		\caption{Einstellungen für die SSL Key Übergabe}
 		\label{fig:ssl_settings}
 	\end{figure}
-	Durch den Versuch wurde die Nachricht leider nicht lesbar entschlüsselt. Nach \citeA{wireshark} auf der Wireshark Website kann das Programm nur Schlüssel verwenden, welche nicht durch ein Passwort verschlüsselt sind. Das wurde durch ein umformen des Keys gelöst. Danach trat ein weiteres Problem ... %@TODO finish fazit des versuchs
+	Durch den Versuch wurde die Nachricht leider nicht lesbar entschlüsselt. Nach \citeA{wireshark} auf der Wireshark Website kann das Programm nur Schlüssel verwenden, welche nicht durch ein Passwort verschlüsselt sind. Da beim Versuch ein solcher Schlüssel verwendet wurde, musste der Schlüssel zuerst noch umgeformt werden.\\
+	Zusätzlich kommt das Problem mit der Verschlüsselungsart hinzu. Auf dem Webserver findet ein Handshake mit der Diffie-Hellman Verschlüsselung statt und kann vom Wireshark nicht entschlüsselt werden. Leider konnte der Webserver nicht umgeformt werden und dadurch der 1. Versuch abgebrochen.\\
+	%start des exkurs
 	\shadebox{
 		\subsection*{Exkurs: Switch Port Analyzer (SPAN)}\label{sec:exkurs_span}
 		Switch Port Analyzer (kurz SPAN), oft auch port mirroring oder port monitoring genannt, kopiert switch netzwerk verkehr und sendet diesen an den SPAN Port zur Analyse durch einen Netzwerk Analyzer weiter. Durch Einschalten des SPAN, kann der Verkehr auf einem Switch überwacht werden durch Weiterleiten von eingehendem und ausgehendem Nachrichten an einen anderen Port [...] Netzwerk Analyzer können so zum Fehlersuchen von Netzwerkproblemen im Datenverkehr benutzt werden, ohne dass dabei das Netzwerk ausser Dienst genommen werden muss.\cite{span}
 		}
-		
+	%ende des exkurs
+	
+	\subsubsection{2. Versuch - Über localhost}
+	Da der 1. Versuch abgebrochen wurde, wurde ein 2. Versuch durchgeführt. Nach der Anleitung eines Entschlüsselungs Walkthrough der Wireshark Webseite \cite{wireshark} wurde dieser Versuch aufgebaut.
+	\begin{enumerate}
+		\item Generate a RSA key and certificate pair
+		\item run a server
+		\item add private_key.pem into Wireshark
+		\item check correct configuration
+		\item start and analyze capture
+	\end{enumerate}
+	
+	\subsubsection{Versuchsergebnisse}
+	
 	\subsection{Analyse von bereits vorhandenen Tools} % keine Enterprise-lösungen
-	%Daniel
+	\begin{description}
+		\item[Wireshark] Ein Tool zur Analyse des Netzwerkverkehrs.
+		\item[•]
+	\end{description}

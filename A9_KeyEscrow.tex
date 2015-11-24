@@ -32,7 +32,22 @@
 {\parbox{\dimexpr\textwidth-2\fboxsep\relax}{#1}}}
 %small noncolored box with visible border, breaks before and after box
 \newcommand{\commandbox}[1]{\par\noindent\fbox{\begin{minipage}{\textwidth}#1\end{minipage}}\par\noindent}
+%for title page template
+\newcommand*{\titleGM}{\begingroup % Create the command for including the title page in the document
+\hbox{ % Horizontal box
+\hspace*{0.2\textwidth} % Whitespace to the left of the title page
+\rule{1pt}{\textheight} % Vertical line
+\hspace*{0.05\textwidth} % Whitespace between the vertical line and title page text
+\parbox[b]{0.75\textwidth}{ % Paragraph box which restricts text to less than the width of the page
 
+{\noindent\Huge\bfseries Termpaper \\[0.5\baselineskip] Key Escrow}\\[2\baselineskip] % Title
+{\large \textit{HSLU Modul - Network \& Cloud Services}}\\[4\baselineskip] % Tagline or further description
+{\Large \textsc{Daniel Föhn, Jonas Hansen \\[0.5\baselineskip] und Silvio Stappung}} % Author name
+
+\vspace{0.5\textheight} % Whitespace between the title block and the publisher
+{\noindent \today}\\[\baselineskip] % Publisher and logo
+}}
+\endgroup}
 
 %page styling footer and header
 \usepackage{fancyhdr}
@@ -46,9 +61,9 @@
 
 %simple title page (page count starts after this page)
 \begin{titlepage}
-	\maketitle
+	\titleGM
+	%\maketitle
 	\thispagestyle{empty}
-	\includegraphics[width=\textwidth]{keyescrow_title.png}
 \end{titlepage}
 
 \tableofcontents
