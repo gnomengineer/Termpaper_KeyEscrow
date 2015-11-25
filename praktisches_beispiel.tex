@@ -47,14 +47,45 @@
 	\subsubsection{2. Versuch - Über localhost}
 	Da der 1. Versuch abgebrochen wurde, wurde ein 2. Versuch durchgeführt. Nach der Anleitung eines Entschlüsselungs Walkthrough der Wireshark Webseite \cite{wireshark} wurde dieser Versuch aufgebaut.
 	\begin{enumerate}
-		\item Generate a RSA key and certificate pair
-		\item run a server
-		\item add private_key.pem into Wireshark
-		\item check correct configuration
-		\item start and analyze capture
+		\item \textbf{Schlüssel und Zertifikat erzeugen}\\
+		als erstes wurde ein RSA key und Zertifikat eingerichtet mit folgendem Befehl
+		\commandbox{openssl req -new -x509 -out server.crt -nodes -keyout server.pem -subj /CN=localhost}
+		\item \textbf{Server über localhost starte}
+		\commandbox{openssl s\_server -www -cipher AES256-SHA -key server.pem -cert server.crt} Mit diesem Befehl wurde der Server gestartet.
+		\item \textbf{Schlüssel am Tool geben}\\
+		über die gleiche Einstellung wie bereits beim 1. Versuch wurde das server.pem dem Wireshark gegeben.
+		\item \textbf{Capture und Analyse}\\
+		Für den Wireshark wurde ein Capturefilter auf TCP und Port 4433 eingesetzt. Danach wurde über die Konsole eine Serveranfrage gesendet.
+		\commandbox{printf 'GET / HTTP/1.0' | openssl s\_client -ign\_eof}
+		Das Capturing im Wireshark ist auf dem Bild \ref{fig:versuch_capture} zu sehen.
+		\begin{figure}[H]
+			\centering
+			\includegraphics[width=\textwidth]{versuch_capture.png}
+			\caption{Capture der Serveranfrage}
+			\label{fig:versuch_capture}
+		\end{figure}				
+		Wenn man den TCP und SSL Stream ansieht, sieht man die jeweiligen Inhalte einmal verschlüsselt (Bild \ref{fig:tcp_stream}) und einmal unverschlüsselt (Bild \ref{fig:ssl_stream}).
+		\begin{figure}[H]
+			\centering
+			\begin{subfigure}{.4\textwidth}
+				\centering
+				\includegraphics[width=\linewidth]{versuch_ssl_stream.png}
+				\caption{entschlüsselter Datenstrom}
+				\label{fig:ssl_stream}
+			\end{subfigure}
+			\begin{subfigure}{.4\textwidth}
+			 	\centering
+				\includegraphics[width=\linewidth]{versuch_tcp_stream.png}
+				\caption{verschlüsselter Datenstrom}
+				\label{fig:tcp_stream}
+			\end{subfigure}
+			\caption{Paketanalyse im Wireshark}
+		\end{figure}
 	\end{enumerate}
 	
 	\subsubsection{Versuchsergebnisse}
+	Mit dem Wireshark ist das Auslesen von verschlüsselten Paketen kein Problem, solange der Schlüssel bekannt und dieser denn Bedingungen zum Entschlüsseln entspricht. Ein solcher Schlüssel darf nicht mit einem Password selbst verschlüsselt sein und darf nicht mit dem Diffie-Hellman Verfahren gemacht worden sein.\\
+	Werden diese Bedingungen erfüllt, erscheinen alle Pakete im Klartext. 
 	
 	\subsection{Analyse von bereits vorhandenen Tools} % keine Enterprise-lösungen
 	\begin{description}
