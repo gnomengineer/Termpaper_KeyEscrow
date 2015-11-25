@@ -20,21 +20,39 @@ Zudem wäre ein solches Verbot auch nur dann vernünftig brauchbar und durchsetz
 Eine Einführung eines solchen Verbotes würde einen Staat interational stark ins Abseits setzten und das Verbot wäre somit auch kaum duchsetzbar.
 		
 	\subsection{Firmenintern}
-Das nachfolgende Kapitel gibt einen Überblick über die Problembereiche beim Key Management von Firmen und zeigt auf, inwiefern Hintertüren für staatliche Eingriffe in Software eingebaut werden können.
+Das nachfolgende Kapitel gibt einen Überblick über die Problembereiche beim Key Management von Firmen und zeigt auf, inwiefern Hintertüren (z.B. für staatliche Eingriffe) in Software eingebaut werden.
 
-	\subsubsection{Key Management Systeme (KMS)}
-Das zentrale Verwalten und hinterlegen von Schlüsseln ist für grössere Firmen eine Notwendigkeit. \\
-Geschäftskritische Daten sollten immer verschlüsselt werden. Um den Überblick über die verwendeten Schlüssel zu bewahren, werden Key Management Systeme (KMS) eingesetzt.
-Mit diesen Systemen lassen sich folgende Problembereiche addressieren:
-\begin{itemize}
+	\subsubsection{Key Management Systeme (KMS)}	
+Geschäftskritische Daten sollten immer verschlüsselt werden. Um den Überblick über die verwendeten Schlüssel zu bewahren, können Key Management Systeme (KMS) eingesetzt. Diese stellen dabei ein firmeninternes Escrow-System dar.
+Mit diesen Systemen lassen sich nebst der Datenverschlüsselung folgende Dinge realisieren:
+\begin{enumerate}
 	\item Datensicherheit durch Verschlüsselung gewährleisten
-	\item Zentrales Verwalten und Administrieren von Schlüsseln
-	\item Entschlüsseln von Geschäftsdaten von Mitarbeitenden bei Tod oder Abwesenheit
-	\item Entschlüsseln von Geschäftsdaten bei untreuen Mitarbeitern
-  \item Überwachung von Mitarbeitern
-  \item Verwalten und verteilen von Softwarelizenzen
+	\item Schlüssel können zentral verwaltet werden (Überblick)
+	\item Entschlüsseln von Geschäftsdaten von Mitarbeitenden bei Tod, Abwesenheit oder Arbeitsverweigerung
+  	\item Überwachung von Mitarbeitern
+\end{enumerate}
+Punkt 3 zeigt auf, welche Problematiken durch starke Verschlüsselung entstehen können. Werden die Daten eines Mitarbeiters durch einen eindeutigen privaten Schlüssel des Mitarbeiters verschlüsselt, hat nur der Mitarbeiter alleine Zugriff auf die Daten. Ohne den Mitarbeiter selber kann das Geschäft die Daten nicht auslesen. Fällt der Mitarbeiter aus, können die Daten nicht wiederhergestellt werden. Wird der Schlüssel jedoch zusätzlich bei einem Treuhänder oder firmenintern hinterlegt, sind die Daten trotzdem wieder dechiffrierbar.
+Die staatliche Key Escrow Idee wird meistens abgelehnt (\textit{Schnüffelstaat}). In diesem Beispiel wurde jedoch aufgezeigt, dass Key Escrow nicht direkt mit Spionage und Totalüberwachung gleichgesetzt werden sollte.
+
+	\subsubsection{Key Escrow in Software am Beispiel des Windows BitLocker}
+Der Windows BitLocker zeigt auf, wie Key Escrow in moderner Software implementiert werden kann. Die BitLocker-Software ist eine Festplatten-Verschlüsselungssoftware von Microsoft, welches standardmässig mit Windows ausgeliefert wird. \\
+Mittels einem Recovery Key kann die Festplatte wieder entschlüsselt werden. Es stellt sich nun die Frage, \textit{wo} dieser Recovery Key gespeichert werden soll. Der BitLocker stellt dabei folgende Optionen zur Verfügung:
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=.8\textwidth]{bitlocker-options.png}
+	\caption{Wo soll der Recovery Key gespeichert werden?}
+	{\cite{bitlocker}}
+	\label{fig:clipper-chip}
+\end{figure}
+\textbf{Save to your Microsoft account} wirft dabei bezüglich Sicherheit Fragen auf.
+\begin{itemize}
+	\item Kann der Schlüssel immer wieder abgerufen werden?
+	\item Wie lange wird der Schlüssel gespeichert?
+	\item Wer erhält sonst noch Zugriff auf den erstellten Schlüssel?
 \end{itemize}
-	
+Sobald man Daten in die Cloud lädt, verliert man die Hoheit über sie. Gesunder Menschenverstand lässt vermuten, dass die Daten vertraulich behandelt werden. Aufgrund der Snowden-Enthüllungen ist jedoch eine gesunde Portion Skepsis gegenüber Cloud-Diensten sicherlich nicht unangebracht.\\
+Der BitLocker zeigt anhand eines einfachen Beispiel, wie schnell man die Hoheit über seine Schlüssel verlieren kann. Es ist schwierig bis unmöglich festzustellen inwiefern Software-Hersteller (insbesondere die Grossen wie Microsoft, Apple oder Google) Hintertüren für Staat und Geheimdienste in ihre Software eingebaut haben. Letzten Endes kann muss jeder Benutzer für sich entscheiden, inwiefern er den Cloud-Diensten vertraut und welche Informationen er in ihnen speichert.
 
 	\subsection{Clipper Chip / Escrowed Encription Standard (EES)} \label{ssec:clipperchip}
 \begin{figure}[H]
