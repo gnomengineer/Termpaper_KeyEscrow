@@ -52,6 +52,7 @@
 		\commandbox{openssl req -new -x509 -out server.crt -nodes -keyout server.pem -subj /CN=localhost}
 		\item \textbf{Server über localhost starten}
 		\commandbox{openssl s\_server -www -cipher AES256-SHA -key server.pem -cert server.crt}
+		Dabei wird dem Server der Schlüssel 'server.pem' und das Zertifikat 'server.crt' aus Schritt 1 übergeben. Der Server läuft über Port 4433.
 		\item \textbf{Schlüssel dem Tool übergeben}\\
 		über die gleiche Einstellung wie bereits beim 1. Versuch wurde das server.pem Wireshark gegeben.
 		\item \textbf{Capture und Analyse}\\
@@ -93,5 +94,5 @@
 		\item[Vault] Ein Opensource Tool zum Speichern von Tokens auf einem Server. Durch eine Konfiguration kann der Speicherort angegeben werden. Das Tool hat die Möglichkeit eine hohe Verfügbarkeit durch Multi-Server Mode herzustellen.\\
 		Tokens können so jederzeit online abgerufen werden.
 		\item[KeyBox] Eine Opensource web-based ssh Konsole für zentralisierte Administration von Systemzugriffen auf mehrere Systeme.
-		\item[privacyID3A] Ist ein webbasiertes Tool, das als Authentifizierungssystem von Benutzern verwendet werden kann. Es bietet eine vielzahl an möglichen Authentifizierungen und kann durch einen Administrator zentral verwaltet werden. Der Administrator und Benutzer können sich jeweils auf das Benutzersystem einloggen.
+		\item[privacyID3A] Ist ein webbasiertes Tool, das als Authentifizierungssystem von Benutzern verwendet werden kann. Es bietet eine vielzahl an möglichen Authentifizierungen und kann durch einen Administrator zentral verwaltet werden. Der Administrator und der Benutzer kann sich jeweils auf das Benutzersystem einloggen.
 	\end{description}
