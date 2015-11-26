@@ -2,7 +2,7 @@ Das folgende Kapitel zeigt mögliche Anwendungen von Key Escrow Systemen und der
 	
 	\subsection{Staatlich}
 		% Silvio
-Die immer stärker werdenden kryptografischen Verfahren stellen die staatlichen Sicherheitsbehördern vor immer grössere Probleme. Die Anwendung von Verschlüsselung durch Straftäter erschwert die Arbeit der Sicherheutsbehörder enorm. \\
+Die immer stärker werdenden kryptografischen Verfahren stellen die staatlichen Sicherheitsbehördern vor immer grössere Probleme. Die Anwendung von Verschlüsselung durch Straftäter erschwert die Arbeit der Sicherheutsbehörden enorm. \\
 Nach terroristischen Anschlägen werden immer wieder Stimmen laut, welche die Einführung einer Möglichkeit zur Erleichterung der Entschlüsselung von Kommunikationsdaten fordern \cite{insideit} \cite{annabiselli} \cite{denning}. 
 Dabei werden immer wieder die selbigen Themen angesprochen:
 
@@ -15,7 +15,7 @@ Eine nicht so schwerwiegende Alternative zu Key Escrow wäre die Hinterlegung de
 
 	
 	\subsubsection{Verbot von alternativen Verschlüsselung}
-Die Einführung eines Escrow Systemes oder die Einführung einer Hinterlegungspflicht für Algorithmen würde auch dazu führen, dass die Gegenseite, das heisst die Verwendung nicht hinterlegter Schlüssel / Algorithmen, verboten werden müsste. Auf der einen Seite wäre ein solches Verbot sehr schwer durchzusetzten, geschweige überhaupt zu kontrollieren, auf der andern Seite wäre es von der Strafnorm her auch kaum möglich, eine genug hohe Maximalstrafe ansetzen zu können, um grössere kriminelle Organisationen von der illealgen Verwendung der Verschlüsselung abzuwenden. \cite{adminch} \\ %KP 7.3.
+Die Einführung eines Escrow Systemes oder die Einführung einer Hinterlegungspflicht für Algorithmen würde auch dazu führen, dass die Gegenseite, das heisst die Verwendung nicht hinterlegter Schlüssel / Algorithmen, verboten werden müsste. Auf der einen Seite wäre ein solches Verbot sehr schwer durchzusetzten, geschweige überhaupt zu kontrollieren, auf der andern Seite wäre es von der Strafnorm her auch kaum möglich, eine genug hohe Maximalstrafe ansetzen zu können, um grössere kriminelle Organisationen von der illegalen Verwendung der Verschlüsselung abzuwenden. \cite{adminch} \\ %KP 7.3.
 Zudem wäre ein solches Verbot auch nur dann vernünftig brauchbar und durchsetzbar, wenn es von der internationalen Gemeinschaft getragen und somit in allen Ländern durchgesetzt würde \cite{denning}. Da der Internationale Weg in Sache Verschlüsselungspolitik in eine andere Richtung weht, zeigt sich darin, dass sich einige Länder, welche in den neunziger Jahren die Kryptografie noch eingeschränkt hatten, in Richtung einer offenen Kryptografiepolitik bewegen. \cite{clipperchip} \cite{adminch} \\ % 7.2.3
 Eine Einführung eines solchen Verbotes würde einen Staat interational stark ins Abseits setzten und das Verbot wäre somit auch kaum duchsetzbar.
 		
@@ -27,15 +27,15 @@ Geschäftskritische Daten sollten immer verschlüsselt werden. Um den Überblick
 Mit diesen Systemen lassen sich nebst der Datenverschlüsselung folgende Dinge realisieren:
 \begin{enumerate}
 	\item Datensicherheit durch Verschlüsselung gewährleisten
-	\item Schlüssel können zentral verwaltet werden (Überblick)
+	\item Schlüssel können zentral verwaltet werden (Firma behält Überblick über verwendete Schlüssel)
 	\item Entschlüsseln von Geschäftsdaten von Mitarbeitenden bei Tod, Abwesenheit oder Arbeitsverweigerung
   	\item Überwachung von Mitarbeitern
 \end{enumerate}
-Punkt 3 zeigt auf, welche Problematiken durch starke Verschlüsselung entstehen können. Werden die Daten eines Mitarbeiters durch einen eindeutigen privaten Schlüssel des Mitarbeiters verschlüsselt, hat nur der Mitarbeiter alleine Zugriff auf die Daten. Ohne den Mitarbeiter selber kann das Geschäft die Daten nicht auslesen. Fällt der Mitarbeiter aus, können die Daten nicht wiederhergestellt werden. Wird der Schlüssel jedoch zusätzlich bei einem Treuhänder oder firmenintern hinterlegt, sind die Daten trotzdem wieder dechiffrierbar.
+Punkt 3 zeigt auf, welche Problematiken durch starke Verschlüsselung entstehen können. Werden die Daten eines Mitarbeiters durch einen eindeutigen privaten Schlüssel des Mitarbeiters verschlüsselt, hat nur der Mitarbeiter Zugriff auf die Daten. Ohne den Mitarbeiter selber kann das Geschäft die Daten nicht auslesen. Fällt der Mitarbeiter aus, können die Daten nicht wiederhergestellt werden. Wird der Schlüssel jedoch zusätzlich bei einem Treuhänder oder firmenintern hinterlegt, sind die Daten trotzdem wieder dechiffrierbar.
 Die staatliche Key Escrow Idee wird meistens abgelehnt (\textit{Schnüffelstaat}). In diesem Beispiel wurde jedoch aufgezeigt, dass Key Escrow nicht direkt mit Spionage und Totalüberwachung gleichgesetzt werden sollte.
 
 	\subsubsection{Key Escrow in Software am Beispiel des Windows BitLocker}
-Der Windows BitLocker zeigt auf, wie Key Escrow in moderner Software implementiert werden kann. Die BitLocker-Software ist eine Festplatten-Verschlüsselungssoftware von Microsoft, welches standardmässig mit Windows ausgeliefert wird. \\
+Der Windows BitLocker zeigt auf, wie Key Escrow in moderner Software implementiert werden kann. Der BitLocker ist eine Festplatten-Verschlüsselungssoftware von Microsoft, welcher standardmässig mit Windows mitgeliefert wird. \\
 Mittels einem Recovery Key kann die Festplatte wieder entschlüsselt werden. Es stellt sich nun die Frage, \textit{wo} dieser Recovery Key gespeichert werden soll. Der BitLocker stellt dabei folgende Optionen zur Verfügung:
 
 \begin{figure}[H]
@@ -51,8 +51,8 @@ Mittels einem Recovery Key kann die Festplatte wieder entschlüsselt werden. Es 
 	\item Wie lange wird der Schlüssel gespeichert?
 	\item Wer erhält sonst noch Zugriff auf den erstellten Schlüssel?
 \end{itemize}
-Sobald man Daten in die Cloud lädt, verliert man die Hoheit über sie. Gesunder Menschenverstand lässt vermuten, dass die Daten vertraulich behandelt werden. Aufgrund der Snowden-Enthüllungen ist jedoch eine gesunde Portion Skepsis gegenüber Cloud-Diensten sicherlich nicht unangebracht.\\
-Der BitLocker zeigt anhand eines einfachen Beispiel, wie schnell man die Hoheit über seine Schlüssel verlieren kann. Es ist schwierig bis unmöglich festzustellen inwiefern Software-Hersteller (insbesondere die Grossen wie Microsoft, Apple oder Google) Hintertüren für Staat und Geheimdienste in ihre Software eingebaut haben. Letzten Endes kann muss jeder Benutzer für sich entscheiden, inwiefern er den Cloud-Diensten vertraut und welche Informationen er in ihnen speichert.
+Sobald man Daten in die Cloud lädt, verliert man die Hoheit über die Daten. Gesunder Menschenverstand lässt vermuten, dass die Daten vertraulich behandelt werden. Aufgrund der Snowden-Enthüllungen ist jedoch eine gesunde Portion Skepsis gegenüber Cloud-Diensten sicherlich nicht unangebracht.\\
+Der BitLocker zeigt anhand eines einfachen Beispiel, wie schnell man die Hoheit über seine Schlüssel verlieren kann. Es ist schwierig bis unmöglich festzustellen inwiefern Software-Hersteller (insbesondere die Grossen wie Microsoft, Apple oder Google) Hintertüren für Staat und Geheimdienste in ihre Software eingebaut haben. Letzten Endes muss jeder Benutzer für sich entscheiden, inwiefern er den Cloud-Diensten vertraut und welche Informationen er in ihnen speichert.
 
 	\subsection{Clipper Chip / Escrowed Encription Standard (EES)} \label{ssec:clipperchip}
 \begin{figure}[H]
@@ -61,7 +61,7 @@ Der BitLocker zeigt anhand eines einfachen Beispiel, wie schnell man die Hoheit 
 	\caption{MYK-78 Clipper Chip (1993)}
 	\label{fig:clipper-chip}
 \end{figure}
-Ein exemplarisches Beispiel für staatliches erzwungenes Key Escrow ist der sogenannte Clipper Chip, welcher im Jahre 1993 durch die US-Behörden vorgestellt wurde und von der NSA entwickelt wurde.\\
+Ein exemplarisches Beispiel für staatlich erzwungenes Key Escrow ist der sogenannte Clipper Chip, welcher im Jahre 1993 durch die US-Behörden vorgestellt wurde und von der NSA entwickelt wurde.\\
 Der Clipper Chip gehört zum Escrowed Encryption Standard (EES), welche hardwaremässige Verschlüsselung mit einer staatlich eingebauten Hintertür bietet. Die Behörden konnten die Verschlüsselungsmechanismen für jeden Clipper Chip rückgängig machen und so an die ursprünglichen Daten kommen. \\
 Eingesetzt werden sollte der Chip in staatlicher und privater Kommunikation. Der Haupteinsatzzweck lag bei verschlüsselter Telefonie. \cite{ees}\\
 Entworfen wurde der Chip von Mykrotronx, hergestellt von VLSI Technology Inc. \\
@@ -90,7 +90,7 @@ Nachfolgend werden die verwendeten Keys zusammengefasst:
 	{\cite{ees}}
 	\label{fig:leaf-aufbau}
 \end{figure}
-Der \textit{Unit Key} wird dabei aufgespalten und bei zwei voneinander getrennten nationalen Behörden gespeichert. Dies dient dazu, Amtsmissbrauch einzudämmen. Soll aufgrund einer richterlichen Anordnung eine verschlüsselte Kommunikation abgehört werden, wird das LEAF mittels \textit{Family Key} dechiffriert. Daraus kann die Unit ID gewonnen werden. Mit der ID wird bei den beiden Behörden die beiden Teile des \textit{Unit Key} angefordert und zusammengefügt. Daraus kann danach der \textit{Session Key} und aus diesem wiederum die verschlüsselten Daten entschlüsselt werden.
+Der \textit{Unit Key} wird dabei aufgespalten und bei zwei voneinander getrennten nationalen Behörden gespeichert. Dies dient dazu, Amtsmissbrauch einzudämmen. Soll aufgrund einer richterlichen Anordnung eine verschlüsselte Kommunikation abgehört werden, wird das LEAF mittels \textit{Family Key} dechiffriert. Daraus kann die Unit ID gewonnen werden. Mit der ID werden bei den zwei Behörden die beiden Teile des \textit{Unit Key} angefordert und zusammengefügt. Daraus kann danach der \textit{Session Key} und aus diesem wiederum die verschlüsselten Daten entschlüsselt werden.
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=.8\textwidth]
@@ -100,18 +100,18 @@ Der \textit{Unit Key} wird dabei aufgespalten und bei zwei voneinander getrennte
 \end{figure}
 
 	\subsubsection{Technische Schwachstelle}
-Im Jahr 1994 veröffentlichte Matt Blaze von AT\& T ein Paper, in dem er eine wesentliche Schwachstelle des Systemes aufzeigte. Wie in Abbildung \ref{fig:leaf-aufbau} zu sehen ist, wird dem LEAF eine Prüfsumme in Form eines Hash mitgegeben. Diese Prüfsumme wird benötigt, damit Manipulationen des LEAF ausgeschlossen werden können. Stimmt der Hash der Prüfsumme nicht mit der Summe des LEAF überein, werden die gesendeten Nachrichten vom Clipper Chip nicht dechiffriert. \\
+Im Jahr 1994 veröffentlichte Matt Blaze von AT\& T ein Paper, in dem er eine wesentliche Schwachstelle des Systemes aufzeigte. Wie in Abbildung \ref{fig:leaf-aufbau} zu sehen ist, wird dem LEAF eine Prüfsumme in Form eines Hash mitgegeben. Diese Prüfsumme wird benötigt, damit Manipulationen des LEAF ausgeschlossen werden können. Stimmt die Prüfsumme nicht mit dem errechneten Hash des LEAF überein, werden die gesendeten Nachrichten vom Clipper Chip nicht dechiffriert. \\
 Forschungen von Matt Blaze zeigen, dass dabei die Länge des Keys (16bit) nicht genügend gross ist, um einer \textit{Brute Force Attacke} standzuhalten. \cite{ees}
 Einem Angreifer wird es also ermöglicht, denselben Hash-Wert für ein LEAF mit einem gefälschten Session Key zu erzeugen. Die Escrow-Behörde erhält somit ein vermeintlich gültiges LEAF, beim aufschlüsseln jedoch einen gefälschten Session Key, mit welchem sich die versendeten Nachrichten nicht dechiffrieren lassen.
 
 	\subsubsection{Das Ende des Clipper Chip}
-Die Idee Clipper Chips kam bei der Bevölkerung überhaupt nicht gut an. \textit{"You don't want to buy a set of car keys from a guy who specializes in stealing cars"}, kommentierte Marc Rotenberg vom Electronic Privacy Information Center die Pläne der Behörden. \cite{ees_nytimes}\\
+Die Idee Clipper Chips kam bei der Bevölkerung nicht gut an. \textit{"You don't want to buy a set of car keys from a guy who specializes in stealing cars"}, kommentierte Marc Rotenberg vom Electronic Privacy Information Center die Pläne der Behörden. \cite{ees_nytimes}\\
 Spätestens im Jahr 1996 wurde der Clipper Chip irrelevant und wird seither nicht mehr weiter produziert. Parallel zum Clipper Chip wurden starke, frei verfügbare Datenverschlüsselungsmechanismen wie etwa PGP (Pretty Good Privacy) auf den Markt gebracht, welche die Idee eines staatlich kontrollierten Escrow-Systems verdrängten. Die Bevölkerung und Hersteller trauten den Behörden zu wenig.
 
 	\subsection{Recovery Agents und Trusted Third Parties}
 Bei Key Escrow handelt es sich um ein Verfahren um Schlüssel für den späteren Gebrauch zu hinterlegen. Key Recovery ist der Prozess der Schlüssel anhand bestehender Daten rekonstruiert.
 \\
-Falls Key Recovery, beziehungsweise Key Escrow von zwei Parteien erwünscht ist, wird meist eine Trusted Third Party als unabhängige Kontroll- und Aufsichtsinstanz hinzugezogen.
+Falls Key Recovery, beziehungsweise Key Escrow, von zwei Parteien erwünscht ist, wird meist eine Trusted Third Party als unabhängige Kontroll- und Aufsichtsinstanz hinzugezogen.
 \\
 Die ausführende Instanz für Key Escrow und Key Recovery ist als Teil einer Trusted Thir Party der Recovery Agent.
 		\subsubsection{Recovery Agent als Man in the Middle bei symmetrisch verschlüsselter Kommunikation}

@@ -15,12 +15,12 @@
 		\caption{Darstellung Versuchsaufbau}
 		\label{fig:versuchsaufbau}
 	\end{figure}
-	Der Switch wird mit unten aufgeführten Befehlen so eingerichtet, dass auf dem Interface Fa0/21 ein Switchport Analyzer eingesetzt wird (siehe Exkurs \ref{sec:exkurs_span}).
+	Der Switch wird mit unten aufgeführten Befehlen so eingerichtet, dass auf dem Interface Fa0/21 ein Switchport Analyzer eingesetzt werden kann (siehe Exkurs \ref{sec:exkurs_span}).
 	\commandbox{conf t}
 	\commandbox{monitor session 1 source interface Fa0/1}
 	\commandbox{monitor session 1 destination interface Fa0/21 encapsulation repliate}
 	
-	Der Versuch besteht aus 2 Teilversuchen. Im ersten Teilversuch wurde auf dem SPAN Port angeschlossenen Rechner das Programm Wireshark gestartet ohne dabei die SSL Zertifikate auszutauschen. Das Ergebnis, ein gesnifftes TCP Paket auf dem 443 Port ist im Bild \ref{fig:ssl_encrypted_data} zu sehen.
+	Der Versuch besteht aus 2 Teilversuchen. Im ersten Teilversuch wurde auf dem am SPAN Port angeschlossenen Rechner das Programm Wireshark gestartet ohne dabei die SSL Zertifikate auszutauschen. Das Ergebnis, ein gesnifftes TCP Paket auf dem Port 443 ist im Bild \ref{fig:ssl_encrypted_data} zu sehen.
 	\begin{figure}[H]
 		\centering
 		\includegraphics[width=.8\textwidth]{SSL_encrypted_data.png}
@@ -36,11 +36,11 @@
 		\label{fig:ssl_settings}
 	\end{figure}
 	Durch den Versuch wurde die Nachricht leider nicht lesbar entschlüsselt. Nach \citeA{wireshark} auf der Wireshark Website kann das Programm nur Schlüssel verwenden, welche nicht durch ein Passwort verschlüsselt sind. Da beim Versuch ein solcher Schlüssel verwendet wurde, musste der Schlüssel zuerst noch umgeformt werden.\\
-	Zusätzlich kommt das Problem mit der Verschlüsselungsart hinzu. Auf dem Webserver findet ein Handshake mit der Diffie-Hellman Verschlüsselung statt und kann vom Wireshark nicht entschlüsselt werden. Leider konnte der Webserver nicht umgeformt werden und dadurch der 1. Versuch abgebrochen.\\
+	Zusätzlich kommt das Problem mit der Verschlüsselungsart hinzu. Auf dem Webserver findet ein Handshake mit der Diffie-Hellman Verschlüsselung statt und kann von Wireshark nicht entschlüsselt werden. Leider konnte der Webserver nicht umgeformt werden und dadurch wurde der 1. Versuch abgebrochen.\\
 	%start des exkurs
 	\shadebox{
 		\subsection*{Exkurs: Switch Port Analyzer (SPAN)}\label{sec:exkurs_span}
-		Switch Port Analyzer (kurz SPAN), oft auch port mirroring oder port monitoring genannt, kopiert switch netzwerk verkehr und sendet diesen an den SPAN Port zur Analyse durch einen Netzwerk Analyzer weiter. Durch Einschalten des SPAN, kann der Verkehr auf einem Switch überwacht werden durch Weiterleiten von eingehendem und ausgehendem Nachrichten an einen anderen Port [...] Netzwerk Analyzer können so zum Fehlersuchen von Netzwerkproblemen im Datenverkehr benutzt werden, ohne dass dabei das Netzwerk ausser Dienst genommen werden muss.\cite{span}
+		Switch Port Analyzer (kurz SPAN), oft auch port mirroring oder port monitoring genannt, kopiert Switch Netzwerkverkehr und sendet diesen an den SPAN Port zur Analyse durch einen Netzwerk Analyzer weiter. Durch Einschalten des SPAN, kann der Verkehr auf einem Switch überwacht werden durch Weiterleiten von eingehendem und ausgehendem Nachrichten an einen anderen Port [...] Netzwerk Analyzer können so zum Suchen von Fehlern von Netzwerkproblemen im Datenverkehr benutzt werden, ohne dass dabei das Netzwerk ausser Dienst genommen werden muss.\cite{span}
 		}
 	%ende des exkurs
 	
@@ -48,14 +48,14 @@
 	Da der 1. Versuch abgebrochen wurde, wurde ein 2. Versuch durchgeführt. Nach der Anleitung eines Entschlüsselungs Walkthrough der Wireshark Webseite \cite{wireshark} wurde dieser Versuch aufgebaut.
 	\begin{enumerate}
 		\item \textbf{Schlüssel und Zertifikat erzeugen}\\
-		als erstes wurde ein RSA key und Zertifikat eingerichtet mit folgendem Befehl
+		als erstes wurde ein RSA key und Zertifikat mit folgendem Befehl eingerichtet
 		\commandbox{openssl req -new -x509 -out server.crt -nodes -keyout server.pem -subj /CN=localhost}
-		\item \textbf{Server über localhost starte}
-		\commandbox{openssl s\_server -www -cipher AES256-SHA -key server.pem -cert server.crt} Mit diesem Befehl wurde der Server gestartet.
-		\item \textbf{Schlüssel am Tool geben}\\
-		über die gleiche Einstellung wie bereits beim 1. Versuch wurde das server.pem dem Wireshark gegeben.
+		\item \textbf{Server über localhost starten}
+		\commandbox{openssl s\_server -www -cipher AES256-SHA -key server.pem -cert server.crt}
+		\item \textbf{Schlüssel dem Tool übergeben}\\
+		über die gleiche Einstellung wie bereits beim 1. Versuch wurde das server.pem Wireshark gegeben.
 		\item \textbf{Capture und Analyse}\\
-		Für den Wireshark wurde ein Capturefilter auf TCP und Port 4433 eingesetzt. Danach wurde über die Konsole eine Serveranfrage gesendet.
+		Für Wireshark wurde ein Capturefilter auf TCP und Port 4433 eingesetzt. Danach wurde über die Konsole eine Serveranfrage gesendet.
 		\commandbox{printf 'GET / HTTP/1.0' | openssl s\_client -ign\_eof}
 		Das Capturing im Wireshark ist auf dem Bild \ref{fig:versuch_capture} zu sehen.
 		\begin{figure}[H]
@@ -84,12 +84,12 @@
 	\end{enumerate}
 	
 	\subsubsection{Versuchsergebnisse}
-	Mit dem Wireshark ist das Auslesen von verschlüsselten Paketen kein Problem, solange der Schlüssel bekannt und dieser denn Bedingungen zum Entschlüsseln entspricht. Ein solcher Schlüssel darf nicht mit einem Password selbst verschlüsselt sein und darf nicht mit dem Diffie-Hellman Verfahren gemacht worden sein.\\
+	Mit Wireshark ist das Auslesen von verschlüsselten Paketen kein Problem, solange der Schlüssel bekannt und dieser denn Bedingungen zum Entschlüsseln entspricht. Ein solcher Schlüssel darf nicht mit einem Password selbst verschlüsselt sein und darf nicht mit dem Diffie-Hellman Verfahren gemacht worden sein.\\
 	Werden diese Bedingungen erfüllt, erscheinen alle Pakete im Klartext. 
 	
 	\subsection{Analyse von bereits vorhandenen Tools} % keine Enterprise-lösungen
 	\begin{description}
-		\item[Wireshark] Ein Tool zur Analyse des Netzwerkverkehrs. Kann eine vielzahl von Protokollen analysieren und bei gegebenem Schlüssel sogar entschlüsseln.
+		\item[Wireshark] Ein Tool zur Analyse des Netzwerkverkehrs. Kann eine Vielzahl von Protokollen analysieren und bei gegebenem Schlüssel sogar entschlüsseln.
 		\item[Vault] Ein Opensource Tool zum Speichern von Tokens auf einem Server. Durch eine Konfiguration kann der Speicherort angegeben werden. Das Tool hat die Möglichkeit eine hohe Verfügbarkeit durch Multi-Server Mode herzustellen.\\
 		Tokens können so jederzeit online abgerufen werden.
 		\item[KeyBox] Eine Opensource web-based ssh Konsole für zentralisierte Administration von Systemzugriffen auf mehrere Systeme.
